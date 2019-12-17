@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+body
+{
+    background-color: rgb(62, 62, 238);
+    background-size: 100%;
+}
+h1
+{
+    color: rgb(3, 2, 0);
+    font-style: bold;
+    text-shadow:0 0 3px rgb(202, 7, 7)
+}
+form
+{
+    margin: auto;
+}
+#dropdown-item
+{
+text-align: justify;
+}
+
+.material-icons
+{
+    color: rgb(10, 1, 1);
+}
+.container
+{
+    margin-top: 35px;
+    position: relative;
+}
+#card
+{
+    width: 18rem;
+}
+
+#navcolor
+{
+background-color: blue;
+}
+body {
+    background-image: url("../HTML/Images/image-fond.JPG");
+    background-repeat: no-repeat ; /pas de répition de l'image/
+    background-attachment: fixed ;
+    background-size: cover;
+
+}
