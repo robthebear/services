@@ -243,5 +243,12 @@ function ajoutHebergement() {
   });
 };
 
-
+function searchId(){
+  document.getElementById("search-button").addEventListener("click",function(e){
+      id=document.getElementById("inputsearch").value;
+  $.ajax({
+      url:"http://localhost:8080/article/byid/"+id,
+   success :  (afficherCard),
+   error : (error)})})};
+  
 
