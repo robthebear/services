@@ -17,5 +17,43 @@ Il est possible de rechercher par id en haut à droite.</p>
 <li><code>/mecanique/add</code>--Ajoute dans la liste mécanique</li>
 <li><code>/rechercheId/{id}</code>--Recherche dans les 3 listes par Id</li>
 </ul>
-<p>Exemple de requète</p>
+<p><strong>Exemple de requète</strong></p>
 <pre><code>http://localhost:8080/services/hebergement/recherche</code><pre>
+<p><strong>Résultat requète</strong></p>
+<pre><code>[
+{
+id: 7,
+user: "Jeannette",
+localisation: "Montauroux",
+comment: "Ouverte d'esprit, je partage mon lit avec qui veut bien",
+nbCouchage: 1
+},
+{
+id: 8,
+user: "Gérard",
+localisation: "Dijon",
+comment: "Après l'amour est dans le pré, je me suis mis à la moto, j'ai une grande grange pour accueillir mes ami(e)s motard(e)s",
+nbCouchage: 12
+},
+{
+id: 9,
+user: "Louis",
+localisation: "Bordeaux",
+comment: "Je fais de la moto depuis 40 ans et j'aime recevoir mes amis motards, et comme on dit: "Vieux motard que jamais". J'adore l'humour!",
+nbCouchage: 3
+},
+{
+id: 11,
+user: "gerea",
+localisation: "kekjr",
+comment: "",
+nbCouchage: 2
+},
+{
+id: 14,
+user: "gerea",
+localisation: "kekjr",
+comment: "",
+nbCouchage: 3
+}
+]</code><pre>
