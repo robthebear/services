@@ -17,3 +17,5 @@ Il est possible de rechercher par id en haut à droite.</p>
 <li><code>/mecanique/add</code>--Ajoute dans la liste mécanique</li>
 <li><code>/rechercheId/{id}</code>--Recherche dans les 3 listes par Id</li>
 </ul>
+<p>Exemple de requète</p>
+<pre><code>http://localhost:8080/services/hebergement/recherche</code><pre>
