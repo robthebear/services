@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 body
 {
-    background-color: rgb(62, 62, 238);
+
     background-size: 100%;
 }
 h1
@@ -18,19 +18,32 @@ form
 {
 text-align: justify;
 }
+#404
+{
+    margin: 0 auto;
+    width: 50%;
+}
 
 .material-icons
 {
     color: rgb(10, 1, 1);
 }
-.container
+#contenant
 {
     margin-top: 35px;
     position: relative;
+    margin-top: 5%;
+    margin-left: 10%;
 }
-#card
+#contenant2
 {
-    width: 18rem;
+position: left;
+}
+.card
+{
+    margin-top: 5%;
+    width: 30rem;
+    display: flex;
 }
 
 #navcolor

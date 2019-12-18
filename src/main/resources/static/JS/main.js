@@ -2,51 +2,41 @@
  * 
  */
 
-//searchId();
-document.getElementById("creation").innerHTML = "<div id='text-ephemere'><h1>Bienvenue sur la page.<br>Veuillez faire votre choix de rubrique.</h1></div>";
+searchId();
+document.getElementById("contenant").innerHTML = "<div id='text-ephemere'><h1>Bienvenue sur la page.<br>Veuillez faire votre choix de rubrique.</h1></div>";
 
 
 
 var listeCarrosserie = [];
 var listeMecanique = [];
 var listeHebergement = [];
-/**
- * Service mecanique
- */
 
 var addServiceMecanique = document.getElementById("addMecanique")
 addServiceMecanique.className = "form-group";
-var rechercheMecanique = document.getElementById("rechercheMecanique");
-rechercheMecanique.className = "dropdown";
 
 addServiceMecanique.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<form><div class='form-group col-sm-6'><label for='inputUser'>User</label><input type='text' class='form-control' id='inputUser' placeholder='User'></div><div class='form-group col-sm-6'><label for='inputLocalisation'>Location</label><input type='text' class='form-control' id='inputLocalisation' placeholder='Location'></div><div class='form-group col-sm-8'><label for='inputComment'>Description des compétences</label><textarea class='form-control' id='inputComment' rows='3'></textarea></div><button type='button' class='btn btn-primary' id='envoi'>Ajouter une compétence</button></form>";
+  document.getElementById("contenant").innerHTML = "";
+  document.getElementById("contenant").innerHTML = "<form><div class='form-group col-sm-6'><label for='inputUser'></label><input type='text' class='form-control' id='inputUser' placeholder='Utilisateur'></div><div class='form-group col-sm-6'><label for='inputLocalisation'></label><input type='text' class='form-control' id='inputLocalisation' placeholder='Localisation'></div><div class='form-group col-sm-8'><label for='inputComment'></label><textarea class='form-control' id='inputComment' rows='3'></textarea></div><button type='button' class='btn btn-primary' id='envoi'>Ajouter</button></form>";
   ajoutMecanique();
 });
 
-function ajoutMecanique() {
-  document.getElementById("envoi").addEventListener('click', function (e) {
-    $.post("http://localhost:8080/services/mecanique/add", {
-      user: document.getElementById("inputUser").value,
-      localisation: document.getElementById("inputLocalisation").value,
-      comment: document.getElementById("inputComment").value
-    });
-    document.location.reload(true);
-  });
-};
 
+var rechercheMecanique = document.getElementById("rechercheMecanique");
+rechercheMecanique.className = "dropdown";
 
 
 rechercheMecanique.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+  document.getElementById("contenant").innerHTML = "";
+ document.getElementById("contenant").innerHTML = "<div class='col-sm-6'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+                       
+                            
   $.ajax({
     url: "http://localhost:8080/services/mecanique/recherche"
   }).then(function (data) {
     listeMecanique = data;
+    chargerMenuMecanique();
   });
-  chargerMenuMecanique();
+  
 
 
 });
@@ -55,14 +45,13 @@ function chargerMenuMecanique() {
     var newMenuItem = document.createElement('button');
     newMenuItem.className = "dropdown-item";
     newMenuItem.type = "button";
-    newMenuItem.textContent = item["localistaion"];
+    newMenuItem.textContent = item["localisation"];
     document.getElementById("dropdown-list").appendChild(newMenuItem);
 
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
-      document.getElementById("creation").innerHTML = "";
-      document.getElementById("creation2").innerHTML = "<div class='card' id='card'></div>";
-      chargerLocalisation(item);
+
+      chargerCard(item);
 
     });
 
@@ -81,32 +70,29 @@ var rechercheCarrosserie = document.getElementById("rechercheCarrosserie");
 rechercheCarrosserie.className = "dropdown";
 
 addServiceCarrosserie.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<form><div class='form-group col-sm-6'><label for='inputUser'>User</label><input type='text' class='form-control' id='inputUser' placeholder='User'></div><div class='form-group col-sm-6'><label for='inputLocalisation'>Location</label><input type='text' class='form-control' id='inputLocalisation' placeholder='Location'></div><div class='form-group col-sm-8'><label for='inputComment'>Description des compétences</label><textarea class='form-control' id='inputComment' rows='3'></textarea></div><button type='button' class='btn btn-primary' id='envoi'>Ajouter une compétence</button></form>";
+ // document.getElementById("contenant").innerHTML = "";
+  document.getElementById("contenant").innerHTML = "<form><div class='form-group col-sm-6'><label for='inputUser'></label><input type='text' class='form-control' id='inputUser' placeholder='Utilisateur'></div><div class='form-group col-sm-6'><label for='inputLocalisation'></label><input type='text' class='form-control' id='inputLocalisation' placeholder='Localisation'></div><div class='form-group col-sm-8'><label for='inputComment'></label><textarea class='form-control' id='inputComment' rows='3'></textarea></div><button type='button' class='btn btn-primary' id='envoi'>Ajouter</button></form>";
   ajoutCarrosserie();
 });
 
 
 rechercheCarrosserie.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
-  console.log("coucou");
-  
+  //document.getElementById("contenant").innerHTML = "";
+  document.getElementById("contenant").innerHTML = "<div class='col-sm-6'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+
   $.ajax({
     url: "http://localhost:8080/services/carrosserie/recherche"
   }).then(function (data) {
     listeCarrosserie = data;
-  }); 
-  chargerLocalisation(item);
-  chargerMenuCarrosserie();
+    chargerMenuCarrosserie();
+  });
+  
 });
 
 
 
 function chargerMenuCarrosserie() {
   listeCarrosserie.forEach(function (item) {
-    console.log(item);
-    console.log("coucou");
     var newMenuItem = document.createElement('button');
     newMenuItem.className = "dropdown-item";
     newMenuItem.type = "button";
@@ -115,45 +101,36 @@ function chargerMenuCarrosserie() {
 
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
-      document.getElementById("creation").innerHTML = "";
-      document.getElementById("creation2").innerHTML = "<div class='card' id='card'></div>";
-      // document.getElementById("card").innerHTML = "<div id='titre' class='card-header'><h2>Carrosserie</h2>User:<br></div><div class='card-body'><blockquote class='blockquote mb-0'><p id='description'>Description:<br></p><footer id= 'localisation' class='blockquote-footer'>Localisation:<br><cite title='Source Title'></cite></footer></blockquote></(item);
-      
-      
+    
+chargerCard(item);
+
     });
 
   });
 };
-function chargerLocalisation(item) {
+function chargerCard(item) {
 
-  let cardTitle = document.createElement('h5');
-  cardTitle.className = "card";
-  cardTitle.innerText = item["user"];
+  
+  document.getElementById("contenant").innerHTML = "<div class='card' id='card'></div>";
+  let cardTitle = document.createElement('h3');
+  cardTitle.className = "card-title";
+  cardTitle.innerText = "Utilisateur: \n" + item["user"];
   document.getElementById("card").appendChild(cardTitle);
-  let localisation = document.createElement('p');
-  localisation.className = "card";
-  localisation.innerText = item["localisation"];
+  let localisation = document.createElement('h4');
+  localisation.className = "card-subtitle mb-2 text-muted";
+  localisation.innerText = "Ville: \n" + item["localisation"];
   document.getElementById("card").appendChild(localisation);
-  let comment = document.createElement('h6');
-  comment.className = "card";
-  comment.innerText = item["comment"];
+  let comment = document.createElement('p');
+  comment.className = "card-text";
+  comment.innerText = "Description:\n " + item["comment"];
   document.getElementById("card").appendChild(comment);
+  let nbCouchage = document.createElement('p');
+  nbCouchage.className = "card-text";
+  nbCouchage.innerText = "Nombre de couchages si hébergement: \n" + item["nbCouchage"];
+  document.getElementById("card").appendChild(nbCouchage);
 
 };
-function ajoutCarrosserie() {
-  document.getElementById("envoi").addEventListener('click', function (e) {
-    $.post("http://localhost:8080/services/carrosserie/add", {
-      user: document.getElementById("inputUser").value,
-      localisation: document.getElementById("inputLocalisation").value,
-      comment: document.getElementById("inputComment").value
-    });
-    document.location.reload(true);
-  });
-};
 
-/**
- * Service Hebergement
- */
 
 var addServiceHebergement = document.getElementById("addHebergement")
 addServiceHebergement.className = "form-group";
@@ -161,23 +138,18 @@ var rechercheHebergement = document.getElementById("rechercheHebergement");
 rechercheHebergement.className = "dropdown";
 
 
-addServiceHebergement.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<form><div class='form-group col-sm-6'><label for='inputUser'>User</label><input type='text' class='form-control' id='inputUser' placeholder='User'></div><div class='form-group col-sm-6'><label for='inputLocalisation'>Location</label><input type='text' class='form-control' id='inputLocalisation' placeholder='Location'></div><div class='form-group col-sm-8'><label for='inputComment'>Description des compétences</label><textarea class='form-control' id='inputComment' rows='3'></textarea></div><button type='button' class='btn btn-primary' id='envoi'>Ajouter une compétence</button></form>";
-  ajoutMecanique();
-});
 
 
 
 rechercheHebergement.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+  document.getElementById("contenant").innerHTML = "";
+  document.getElementById("contenant").innerHTML = "<div class='col-sm-6'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
   $.ajax({
     url: "http://localhost:8080/services/hebergement/recherche"
   }).then(function (data) {
     listeHebergement = data;
+    chargerMenuHebergement();
   });
-  chargerMenuHebergement();
 
 });
 
@@ -193,9 +165,8 @@ function chargerMenuHebergement() {
 
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
-      document.getElementById("creation").innerHTML = "";
-      document.getElementById("creation2").innerHTML = "<div class='card' id='card'></div>";
-      chargerLocalisation(item);
+      
+      chargerCard(item);
 
     });
 
@@ -203,8 +174,34 @@ function chargerMenuHebergement() {
 };
 
 
+function ajoutMecanique() {
+  document.getElementById("envoi").addEventListener('click', function (e) {
+    $.post("http://localhost:8080/services/mecanique/add", {
+      user: document.getElementById("inputUser").value,
+      localisation: document.getElementById("inputLocalisation").value,
+      comment: document.getElementById("inputComment").value
+    });
+    document.location.reload(true);
+  });
+};
 
 
+function ajoutCarrosserie() {
+  document.getElementById("envoi").addEventListener('click', function (e) {
+    $.post("http://localhost:8080/services/carrosserie/add", {
+      user: document.getElementById("inputUser").value,
+      localisation: document.getElementById("inputLocalisation").value,
+      comment: document.getElementById("inputComment").value
+    });
+    document.location.reload(true);
+  });
+};
+
+addServiceHebergement.addEventListener('click', function () {
+  //document.getElementById("contenant").innerHTML = "";
+  document.getElementById("contenant").innerHTML = "<form><div class='form-group col-sm-6'><label for='inputUser'></label><input type='text' class='form-control' id='inputUser' placeholder='Utilisateur'></div><div class='form-group col-sm-6'><label for='inputLocalisation'></label><input type='text' class='form-control' id='inputLocalisation' placeholder='Localisation'></div><div class='form-group col-sm-8'><label for='inputComment'></label><textarea class='form-control' id='inputComment' rows='3'></textarea></div><div class='form-group col-sm-6'><label for='inputUser'></label><input type='text' class='form-control' id='inputCouchage' placeholder='Nombre couchages*'></div><button type='button' class='btn btn-primary' id='envoi'>Ajouter un hébergement</button></form>";
+  ajoutHebergement();
+});
 
 
 function ajoutHebergement() {
@@ -212,24 +209,30 @@ function ajoutHebergement() {
     $.post("http://localhost:8080/services/hebergement/add", {
       user: document.getElementById("inputUser").value,
       localisation: document.getElementById("inputLocalisation").value,
-      commentHebergement: document.getElementById("inputComment").value,
-      nbCouchageHebergement: document.getElementById("inputComment").value,
+      comment: document.getElementById("inputComment").value,
+      nbCouchage: document.getElementById("inputCouchage").value,
     });
     document.location.reload(true);
   });
 };
-/** 
-function searchId(){
-  document.getElementById("search-button").addEventListener("click",function(e){
 
-    id=document.getElementById("inputsearch").value;
+
+function searchId() {
+  document.getElementById("search-button").addEventListener("click", function (e) {
+
+    id = document.getElementById("inputsearch").value;
     $.ajax({
-        url:"http://localhost:8080/services/recheche/"+id,
-     success :  (console.log(ok)),
-     error : (error)})})};
+      url: "http://localhost:8080/services/rechercheId/" + id,
+      success: (chargerCard),
 
-     function error (data){
-      //document.location.href="404error.html"
-      console.log("KO");
-   }
-*/
+      error: (error)
+    })
+  })
+};
+
+function error() {
+  document.getElementById("contenant").innerHTML = "";
+  document.getElementById("contenant").innerHTML = "<div id='404'><a href='index.html' class='btn btn-primary btn-lg active' role='button' aria-pressed='true'>Retour à l'accueil</a><img src='HTML/Images/error-404-1252056_960_720.webp' alt=''></div>";
+
+}
+

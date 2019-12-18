@@ -3,15 +3,15 @@ package fr.robear.services.model;
 public class ServiceMecanique {
 	private int id;
 	private String user;
-	private String localistaion;
+	private String localisation;
 	private String comment;
 
-	public ServiceMecanique(int id, String user, String localistaion,
+	public ServiceMecanique(int id, String user, String localisation,
 			String comment) {
 		super();
 		this.id = id;
 		this.user = user;
-		this.localistaion = localistaion;
+		this.localisation = localisation;
 		this.comment = comment;
 	}
 
@@ -23,8 +23,8 @@ public class ServiceMecanique {
 		return user;
 	}
 
-	public String getLocalistaion() {
-		return localistaion;
+	public String getLocalisation() {
+		return localisation;
 	}
 
 	public String getComment() {

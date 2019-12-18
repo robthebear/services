@@ -77,10 +77,10 @@ public class ServiceController {
 	@RequestMapping("/mecanique/add")
 	public List<ServiceMecanique> addServiceMecanique(
 			@RequestParam(value = "user") String user,
-			@RequestParam(value = "localistaion") String localistaion,
+			@RequestParam(value = "localisation") String localisation,
 			@RequestParam(value = "comment") String comment) {
 		servicemecaniqueList.add(new ServiceMecanique(count.incrementAndGet(), user,
-				localistaion, comment));
+				localisation, comment));
 		return servicemecaniqueList;
 	}
 
