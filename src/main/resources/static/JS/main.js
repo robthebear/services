@@ -2,7 +2,7 @@
  * 
  */
 
-searchId();
+//searchId();
 document.getElementById("creation").innerHTML = "<div id='text-ephemere'><h1>Bienvenue sur la page.<br>Veuillez faire votre choix de rubrique.</h1></div>";
 
 
@@ -14,9 +14,9 @@ var listeHebergement = [];
  * Service mecanique
  */
 
-let addServiceMecanique = document.getElementById("addMecanique")
+var addServiceMecanique = document.getElementById("addMecanique")
 addServiceMecanique.className = "form-group";
-let rechercheMecanique = document.getElementById("rechercheMecanique");
+var rechercheMecanique = document.getElementById("rechercheMecanique");
 rechercheMecanique.className = "dropdown";
 
 addServiceMecanique.addEventListener('click', function () {
@@ -36,18 +36,16 @@ function ajoutMecanique() {
   });
 };
 
-function listeMecanique() {
+
+
+rechercheMecanique.addEventListener('click', function () {
+  document.getElementById("creation").innerHTML = "";
+  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
   $.ajax({
     url: "http://localhost:8080/services/mecanique/recherche"
   }).then(function (data) {
     listeMecanique = data;
   });
-}
-
-rechercheMecanique.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
-  listeMecanique();
   chargerMenuMecanique();
 
 
@@ -63,7 +61,7 @@ function chargerMenuMecanique() {
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
       document.getElementById("creation").innerHTML = "";
-      document.getElementById("creation").innerHTML = "<div class='card' id='card'></div>";
+      document.getElementById("creation2").innerHTML = "<div class='card' id='card'></div>";
       chargerLocalisation(item);
 
     });
@@ -77,9 +75,9 @@ function chargerMenuMecanique() {
  * Service Carrosserie
  */
 
-let addServiceCarrosserie = document.getElementById("addCarrosserie")
+var addServiceCarrosserie = document.getElementById("addCarrosserie")
 addServiceCarrosserie.className = "form-group";
-let rechercheCarrosserie = document.getElementById("rechercheCarrosserie");
+var rechercheCarrosserie = document.getElementById("rechercheCarrosserie");
 rechercheCarrosserie.className = "dropdown";
 
 addServiceCarrosserie.addEventListener('click', function () {
@@ -92,21 +90,20 @@ addServiceCarrosserie.addEventListener('click', function () {
 rechercheCarrosserie.addEventListener('click', function () {
   document.getElementById("creation").innerHTML = "";
   document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
-  listeCarrosserie();
-  chargerMenuCarrosserie();
-});
-
-function listeCarrosserie() {
+  console.log("coucou");
   $.ajax({
     url: "http://localhost:8080/services/carrosserie/recherche"
   }).then(function (data) {
     listeCarrosserie = data;
-    
-  });
-};
+  });  chargerMenuCarrosserie();
+});
+
+
 
 function chargerMenuCarrosserie() {
   listeCarrosserie.forEach(function (item) {
+    console.log(item);
+    console.log("coucou");
     var newMenuItem = document.createElement('button');
     newMenuItem.className = "dropdown-item";
     newMenuItem.type = "button";
@@ -116,7 +113,7 @@ function chargerMenuCarrosserie() {
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
       document.getElementById("creation").innerHTML = "";
-      document.getElementById("creation").innerHTML = "<div class='card' id='card'></div>";
+      document.getElementById("creation2").innerHTML = "<div class='card' id='card'></div>";
       // document.getElementById("card").innerHTML = "<div id='titre' class='card-header'><h2>Carrosserie</h2>User:<br></div><div class='card-body'><blockquote class='blockquote mb-0'><p id='description'>Description:<br></p><footer id= 'localisation' class='blockquote-footer'>Localisation:<br><cite title='Source Title'></cite></footer></blockquote></(item);
       chargerLocalisation(item);
     });
@@ -154,9 +151,9 @@ function ajoutCarrosserie() {
  * Service Hebergement
  */
 
-let addServiceHebergement = document.getElementById("addHebergement")
+var addServiceHebergement = document.getElementById("addHebergement")
 addServiceHebergement.className = "form-group";
-let rechercheHebergement = document.getElementById("rechercheHebergement");
+var rechercheHebergement = document.getElementById("rechercheHebergement");
 rechercheHebergement.className = "dropdown";
 
 
@@ -166,18 +163,16 @@ addServiceHebergement.addEventListener('click', function () {
   ajoutMecanique();
 });
 
-function listeHebergement() {
+
+
+rechercheHebergement.addEventListener('click', function () {
+  document.getElementById("creation").innerHTML = "";
+  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
   $.ajax({
     url: "http://localhost:8080/services/hebergement/recherche"
   }).then(function (data) {
     listeHebergement = data;
   });
-}
-
-rechercheHebergement.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
-  listeHebergement();
   chargerMenuHebergement();
 
 });
@@ -185,7 +180,7 @@ rechercheHebergement.addEventListener('click', function () {
 
 
 function chargerMenuHebergement() {
-  listeMecanique.forEach(function (item) {
+  listeHebergement.forEach(function (item) {
     var newMenuItem = document.createElement('button');
     newMenuItem.className = "dropdown-item";
     newMenuItem.type = "button";
@@ -195,7 +190,7 @@ function chargerMenuHebergement() {
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
       document.getElementById("creation").innerHTML = "";
-      document.getElementById("creation").innerHTML = "<div class='card' id='card'></div>";
+      document.getElementById("creation2").innerHTML = "<div class='card' id='card'></div>";
       chargerLocalisation(item);
 
     });
