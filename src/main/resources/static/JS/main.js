@@ -89,13 +89,16 @@ addServiceCarrosserie.addEventListener('click', function () {
 
 rechercheCarrosserie.addEventListener('click', function () {
   document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+  document.getElementById("creation").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
   console.log("coucou");
+  
   $.ajax({
     url: "http://localhost:8080/services/carrosserie/recherche"
   }).then(function (data) {
     listeCarrosserie = data;
-  });  chargerMenuCarrosserie();
+  }); 
+  chargerLocalisation(item);
+  chargerMenuCarrosserie();
 });
 
 
@@ -115,7 +118,8 @@ function chargerMenuCarrosserie() {
       document.getElementById("creation").innerHTML = "";
       document.getElementById("creation2").innerHTML = "<div class='card' id='card'></div>";
       // document.getElementById("card").innerHTML = "<div id='titre' class='card-header'><h2>Carrosserie</h2>User:<br></div><div class='card-body'><blockquote class='blockquote mb-0'><p id='description'>Description:<br></p><footer id= 'localisation' class='blockquote-footer'>Localisation:<br><cite title='Source Title'></cite></footer></blockquote></(item);
-      chargerLocalisation(item);
+      
+      
     });
 
   });
