@@ -18,7 +18,7 @@ Il est possible de rechercher par id en haut à droite.</p>
 <li><code>/rechercheId/{id}</code>--Recherche dans les 3 listes par Id</li>
 </ul>
 <p><strong>Exemple de requète</strong></p>
-<pre><code>http://localhost:8080/services/hebergement/recherche</code><pre>
+<pre><code>http://localhost:8080/services/hebergement/recherche</code></pre>
 <p><strong>Résultat requète</strong></p>
 <pre><code>[
 {
@@ -56,4 +56,12 @@ localisation: "kekjr",
 comment: "",
 nbCouchage: 3
 }
-]</code><pre>
+]</code></pre>
+<h2>Attributs</h2>
+<ul>
+<li><code>id</code>--Id de l'utilisateur</li>
+<li><code>user</code>--Nom de l'utilisateur</li>
+<li><code>localisation</code>--La localisation</li>
+<li><code>comment</code>--Description de son offre</li>
+<li><code>nbCouchage</code>--La possibilité de couchages</li>
+</ul>
