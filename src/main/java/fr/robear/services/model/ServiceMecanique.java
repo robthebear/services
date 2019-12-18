@@ -2,33 +2,33 @@ package fr.robear.services.model;
 
 public class ServiceMecanique {
 	private int id;
-	private String userServiceMecanique;
-	private String localistaionServiceMecanique;
-	private String commentServiceMecanique;
+	private String user;
+	private String localistaion;
+	private String comment;
 
-	public ServiceMecanique(int id, String userServiceMecanique, String localistaionServiceMecanique,
-			String commentServiceMecanique) {
+	public ServiceMecanique(int id, String user, String localistaion,
+			String comment) {
 		super();
 		this.id = id;
-		this.userServiceMecanique = userServiceMecanique;
-		this.localistaionServiceMecanique = localistaionServiceMecanique;
-		this.commentServiceMecanique = commentServiceMecanique;
+		this.user = user;
+		this.localistaion = localistaion;
+		this.comment = comment;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public String getUserServiceMecanique() {
-		return userServiceMecanique;
+	public String getUser() {
+		return user;
 	}
 
-	public String getLocalistaionServiceMecanique() {
-		return localistaionServiceMecanique;
+	public String getLocalistaion() {
+		return localistaion;
 	}
 
-	public String getCommentServiceMecanique() {
-		return commentServiceMecanique;
+	public String getComment() {
+		return comment;
 	}
 
 }

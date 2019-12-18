@@ -1,40 +1,39 @@
 package fr.robear.services.model;
 
 public class ServiceHebergement {
-	private int idHebergement;
-	private String localisationHebergement;
-	private String userHebergement;
-	private int nbCouchageHebergement;
-	private String commentHebergement;
+	private int id;
+	private String user;
+	private String localisation;
+	private String comment;
+	private int nbCouchage;
 
-	public ServiceHebergement(int idHebergement, String localisationHebergement, String userHebergement,
-			int nbCouchageHebergement, String commentHebergement) {
+	public ServiceHebergement(int id, String user, String localisation, String comment, int nbCouchage) {
 		super();
-		this.idHebergement = idHebergement;
-		this.localisationHebergement = localisationHebergement;
-		this.userHebergement = userHebergement;
-		this.nbCouchageHebergement = nbCouchageHebergement;
-		this.commentHebergement = commentHebergement;
+		this.id = id;
+		this.user = user;
+		this.localisation = localisation;
+		this.comment = comment;
+		this.nbCouchage = nbCouchage;
 	}
 
-	public int getIdHebergement() {
-		return idHebergement;
+	public int getId() {
+		return id;
 	}
 
-	public String getLocalisationHebergement() {
-		return localisationHebergement;
+	public String getUser() {
+		return user;
 	}
 
-	public String getUserHebergement() {
-		return userHebergement;
+	public String getLocalisation() {
+		return localisation;
 	}
 
-	public int getNbCouchageHebergement() {
-		return nbCouchageHebergement;
+	public String getComment() {
+		return comment;
 	}
 
-	public String getCommentHebergement() {
-		return commentHebergement;
+	public int getNbCouchage() {
+		return nbCouchage;
 	}
 
 }

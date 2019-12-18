@@ -5,9 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.robear.services.model.ServiceCarrosserie;
@@ -19,8 +23,6 @@ import fr.robear.services.model.ServiceMecanique;
 @CrossOrigin("*")
 public class ServiceController {
 	private static final AtomicInteger count = new AtomicInteger(0);
-	private static final AtomicInteger count1 = new AtomicInteger(0);
-	private static final AtomicInteger count2 = new AtomicInteger(0);
 	List<ServiceCarrosserie> serviceCarrosseriesList;
 	List<ServiceHebergement> servicehebergementList;
 	List<ServiceMecanique> servicemecaniqueList;
@@ -35,20 +37,20 @@ public class ServiceController {
 						"C'est compliqué, mais je peux très bien faire de la carrosserie ou me faire embaucher par la NASA")));
 
 		servicemecaniqueList = new ArrayList<ServiceMecanique>(Arrays.asList(
-				new ServiceMecanique(count1.incrementAndGet(), "Denis", "Cantaron",
+				new ServiceMecanique(count.incrementAndGet(), "Denis", "Cantaron",
 						"J'ai un atelier bien rempli avec une bonne connaissance en mécanique et de la pratique"),
-				new ServiceMecanique(count1.incrementAndGet(), "Jean-Luc", "Monaco",
+				new ServiceMecanique(count.incrementAndGet(), "Jean-Luc", "Monaco",
 						"Je suis corporate et priorise l'humain est important, mais pas trop quand même"),
-				new ServiceMecanique(count1.incrementAndGet(), "Gwenolé", "Brest",
+				new ServiceMecanique(count.incrementAndGet(), "Gwenolé", "Brest",
 						"La bière c'est tout ma vie, et la vie c'est la bière")));
 
 		servicehebergementList = new ArrayList<ServiceHebergement>(Arrays.asList(
-				new ServiceHebergement(count2.incrementAndGet(), "Montauroux", "Jeannette", 1,
-						"Ouverte d'esprit, je partage mon lit avec qui veut bien"),
-				new ServiceHebergement(count2.incrementAndGet(), "Dijon", "Gérard", 12,
-						"Après l'amour est dans le pré, je me suis mis à la moto, j'ai une grande grange pour accueillir mes ami(e)s motard(e)s"),
-				new ServiceHebergement(count2.incrementAndGet(), "Bordeaux", "Louis", 3,
-						"Je fais de la moto depuis 40 ans et j'aime recevoir mes amis motards, et comme on dit: \"Vieux motard que jamais\". J'adore l'humour!")));
+				new ServiceHebergement(count.incrementAndGet(), "Jeannette", "Montauroux",
+						"Ouverte d'esprit, je partage mon lit avec qui veut bien", 1),
+				new ServiceHebergement(count.incrementAndGet(),"Gérard", "Dijon",
+						"Après l'amour est dans le pré, je me suis mis à la moto, j'ai une grande grange pour accueillir mes ami(e)s motard(e)s", 12),
+				new ServiceHebergement(count.incrementAndGet(), "Louis", "Bordeaux",
+						"Je fais de la moto depuis 40 ans et j'aime recevoir mes amis motards, et comme on dit: \"Vieux motard que jamais\". J'adore l'humour!", 3)));
 
 	}
 
@@ -59,11 +61,11 @@ public class ServiceController {
 
 	@RequestMapping("/carrosserie/add")
 	public List<ServiceCarrosserie> addServiceCarrosserie(
-			@RequestParam(value = "userCarrosserie") String userCarrosserie,
-			@RequestParam(value = "localisationCarrosserie") String localisationCarrosserie,
-			@RequestParam(value = "commentCarrosserie") String commentCarrosserie) {
-		serviceCarrosseriesList.add(new ServiceCarrosserie(count.incrementAndGet(), userCarrosserie,
-				localisationCarrosserie, commentCarrosserie));
+			@RequestParam(value = "user") String user,
+			@RequestParam(value = "localisation") String localisation,
+			@RequestParam(value = "comment") String comment) {
+		serviceCarrosseriesList.add(new ServiceCarrosserie(count.incrementAndGet(), user,
+				localisation, comment));
 		return serviceCarrosseriesList;
 	}
 
@@ -74,11 +76,11 @@ public class ServiceController {
 
 	@RequestMapping("/mecanique/add")
 	public List<ServiceMecanique> addServiceMecanique(
-			@RequestParam(value = "userServiceMecanique") String userServiceMecanique,
-			@RequestParam(value = "localistaionServiceMecanique") String localistaionServiceMecanique,
-			@RequestParam(value = "commentServiceMecanique") String commentServiceMecanique) {
-		servicemecaniqueList.add(new ServiceMecanique(count1.incrementAndGet(), userServiceMecanique,
-				localistaionServiceMecanique, commentServiceMecanique));
+			@RequestParam(value = "user") String user,
+			@RequestParam(value = "localistaion") String localistaion,
+			@RequestParam(value = "comment") String comment) {
+		servicemecaniqueList.add(new ServiceMecanique(count.incrementAndGet(), user,
+				localistaion, comment));
 		return servicemecaniqueList;
 	}
 
@@ -89,13 +91,32 @@ public class ServiceController {
 
 	@RequestMapping("/hebergement/add")
 	public List<ServiceHebergement> addServiceHebergement(
-			@RequestParam(value = "localisationHebergement") String localisationHebergement,
-			@RequestParam(value = "userHebergement") String userHebergement,
-			@RequestParam(value = "nbCouchageHebergement") int nbCouchageHebergement,
-			@RequestParam(value = "commentHebergement") String commentHebergement) {
-		servicehebergementList.add(new ServiceHebergement(count2.incrementAndGet(), localisationHebergement,
-				userHebergement, nbCouchageHebergement, commentHebergement));
+			@RequestParam(value = "user") String user,
+			@RequestParam(value = "localisation") String localisation,
+			@RequestParam(value = "comment") String comment, 
+		@RequestParam(value = "nbCouchage") int nbCouchage) {
+		servicehebergementList.add(new ServiceHebergement(count.incrementAndGet(), 
+				user, localisation, comment, nbCouchage));
 		return servicehebergementList;
 	}
 
+	@RequestMapping("/rechercheId/{id}")
+	public ResponseEntity<Object> getArticle(@PathVariable int id) {
+		for (ServiceCarrosserie serviceCarrosserie : serviceCarrosseriesList) {
+			if (serviceCarrosserie.getId() == id) {
+				return ResponseEntity.ok(serviceCarrosserie);
+			}
+		}
+		for (ServiceMecanique serviceMecanique : servicemecaniqueList) {
+			if (serviceMecanique.getId() == id) {
+				return ResponseEntity.ok(serviceMecanique);
+			}
+		}
+		for (ServiceHebergement servicehebergement : servicehebergementList) {
+			if (servicehebergement.getId() == id) {
+				return ResponseEntity.ok(servicehebergement);
+			}
+		}
+		return ResponseEntity.notFound().build();
+	}
 }

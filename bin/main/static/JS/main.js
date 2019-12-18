@@ -36,17 +36,19 @@ function ajoutMecanique() {
   });
 };
 
-
-
-rechercheMecanique.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+function listeMecanique() {
   $.ajax({
     url: "http://localhost:8080/services/mecanique/recherche"
   }).then(function (data) {
     listeMecanique = data;
-    chargerMenuMecanique();
   });
+}
+
+rechercheMecanique.addEventListener('click', function () {
+  document.getElementById("creation").innerHTML = "";
+  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+  listeMecanique()
+  chargerMenuMecanique();
 
 });
 function chargerMenuMecanique() {
@@ -100,17 +102,23 @@ addServiceCarrosserie.addEventListener('click', function () {
   ajoutCarrosserie();
 });
 
+
 rechercheCarrosserie.addEventListener('click', function () {
   document.getElementById("creation").innerHTML = "";
   document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+  listeCarrosserie()
+  chargerMenuCarrosserie();
+});
+
+function listeCarrosserie() {
   $.ajax({
     url: "http://localhost:8080/services/carrosserie/recherche"
   }).then(function (data) {
     listeCarrosserie = data;
-    chargerMenuCarrosserie();
+    
   });
+};
 
-});
 function chargerMenuCarrosserie() {
   listeCarrosserie.forEach(function (item) {
     var newMenuItem = document.createElement('button');
@@ -173,16 +181,19 @@ addServiceHebergement.addEventListener('click', function () {
   ajoutMecanique();
 });
 
-
-rechercheHebergement.addEventListener('click', function () {
-  document.getElementById("creation").innerHTML = "";
-  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+function listeHebergement() {
   $.ajax({
     url: "http://localhost:8080/services/hebergement/recherche"
   }).then(function (data) {
     listeHebergement = data;
     chargerMenuHebergement();
   });
+}
+
+rechercheHebergement.addEventListener('click', function () {
+  document.getElementById("creation").innerHTML = "";
+  document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+  listeHebergement();
 
 });
 
@@ -245,9 +256,9 @@ function ajoutHebergement() {
 
 function searchId(){
   document.getElementById("search-button").addEventListener("click",function(e){
+
       id=document.getElementById("inputsearch").value;
-  $.ajax({
-      url:"http://localhost:8080/article/byid/"+id,
+ 
    success :  (afficherCard),
    error : (error)})})};
   

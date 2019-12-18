@@ -1,37 +1,37 @@
 package fr.robear.services.model;
 
 public class ServiceCarrosserie {
-private int idCarrosserie;
-private String userCarrosserie;
-private String localisationCarrosserie;
-private String commentCarrosserie;
+private int id;
+private String user;
+private String localisation;
+private String comment;
 
 
-public ServiceCarrosserie(int idCarrosserie, String userCarrosserie, String localisationCarrosserie, String commentCarrosserie) {
-	this.idCarrosserie = idCarrosserie;
-	this.userCarrosserie = userCarrosserie;
-	this.localisationCarrosserie = localisationCarrosserie;
-	this.commentCarrosserie = commentCarrosserie;
+public ServiceCarrosserie(int id, String user, String localisation, String comment) {
+	this.id = id;
+	this.user = user;
+	this.localisation = localisation;
+	this.comment = comment;
 }
 
 
-public int getIdCarrosserie() {
-	return idCarrosserie;
+public int getId() {
+	return id;
 }
 
 
-public String getUserCarrosserie() {
-	return userCarrosserie;
+public String getUser() {
+	return user;
 }
 
 
-public String getLocalisationCarrosserie() {
-	return localisationCarrosserie;
+public String getLocalisation() {
+	return localisation;
 }
 
 
-public String getCommentCarrosserie() {
-	return commentCarrosserie;
+public String getComment() {
+	return comment;
 }
 
 
