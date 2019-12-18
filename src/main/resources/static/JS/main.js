@@ -28,8 +28,9 @@ addServiceMecanique.addEventListener('click', function () {
 function ajoutMecanique() {
   document.getElementById("envoi").addEventListener('click', function (e) {
     $.post("http://localhost:8080/services/mecanique/add", {
-      userServiceMecanique: document.getElementById("inputUs: document.getElementById("inputLocalisation").value,
-      commentServiceMecanique: document.getElementById("inputComment").value
+      user: document.getElementById("inputUser").value,
+      localisation: document.getElementById("inputLocalisation").value,
+      comment: document.getElementById("inputComment").value
     });
     document.location.reload(true);
   });
@@ -46,8 +47,9 @@ function listeMecanique() {
 rechercheMecanique.addEventListener('click', function () {
   document.getElementById("creation").innerHTML = "";
   document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
-  listeMecanique()
+  listeMecanique();
   chargerMenuMecanique();
+
 
 });
 function chargerMenuMecanique() {
@@ -90,7 +92,7 @@ addServiceCarrosserie.addEventListener('click', function () {
 rechercheCarrosserie.addEventListener('click', function () {
   document.getElementById("creation").innerHTML = "";
   document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
-  listeCarrosserie()
+  listeCarrosserie();
   chargerMenuCarrosserie();
 });
 
@@ -208,10 +210,11 @@ function chargerMenuHebergement() {
 
 function ajoutHebergement() {
   document.getElementById("envoi").addEventListener('click', function (e) {
-    $.post("http://localhost:8080/services/hebergement/a: document.getElementById("inputLocalisation").value,
-      userHebergement: document.getElementById("inputUser").value,
+    $.post("http://localhost:8080/services/hebergement/add", {
+      user: document.getElementById("inputUser").value,
+      localisation: document.getElementById("inputLocalisation").value,
+      commentHebergement: document.getElementById("inputComment").value,
       nbCouchageHebergement: document.getElementById("inputComment").value,
-      commentHebergement: document.getElementById("inputComment").value
     });
     document.location.reload(true);
   });
