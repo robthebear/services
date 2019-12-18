@@ -2,7 +2,7 @@
  * 
  */
 
-
+searchId();
 document.getElementById("creation").innerHTML = "<div id='text-ephemere'><h1>Bienvenue sur la page.<br>Veuillez faire votre choix de rubrique.</h1></div>";
 
 
@@ -75,14 +75,14 @@ function chargerLocalisationMecanique(item) {
   cardTitle.className = "card";
   cardTitle.innerText = item["userServiceMecanique"];
   document.getElementById("card").appendChild(cardTitle);
-  let localisationUser = document.createElement('p');
-  localisationUser.className = "card";
-  localisationUser.innerText = item["localistaionServiceMecanique"];
-  document.getElementById("card").appendChild(localisationUser);
-  let descriptionCarrosserie = document.createElement('h6');
-  descriptionCarrosserie.className = "card";
-  descriptionCarrosserie.innerText = item["commentServiceMecanique"];
-  document.getElementById("card").appendChild(descriptionCarrosserie);
+  let localisation = document.createElement('p');
+  localisation.className = "card";
+  localisation.innerText = item["localistaionServiceMecanique"];
+  document.getElementById("card").appendChild(localisation);
+  let comment = document.createElement('h6');
+  comment.className = "card";
+  comment.innerText = item["commentServiceMecanique"];
+  document.getElementById("card").appendChild(comment);
 
 };
 
@@ -124,42 +124,41 @@ function chargerMenuCarrosserie() {
     var newMenuItem = document.createElement('button');
     newMenuItem.className = "dropdown-item";
     newMenuItem.type = "button";
-    newMenuItem.textContent = item["localisationCarrosserie"];
+    newMenuItem.textContent = item["localisation"];
     document.getElementById("dropdown-list").appendChild(newMenuItem);
 
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
       document.getElementById("creation").innerHTML = "";
       document.getElementById("creation").innerHTML = "<div class='card' id='card'></div>";
-      // document.getElementById("card").innerHTML = "<div id='titre' class='card-header'><h2>Carrosserie</h2>User:<br></div><div class='card-body'><blockquote class='blockquote mb-0'><p id='description'>Description:<br></p><footer id= 'localisation' class='blockquote-footer'>Localisation:<br><cite title='Source Title'></cite></footer></blockquote></div>";
-      chargerLocalisationCarrosserie(item);
+      // document.getElementById("card").innerHTML = "<div id='titre' class='card-header'><h2>Carrosserie</h2>User:<br></div><div class='card-body'><blockquote class='blockquote mb-0'><p id='description'>Description:<br></p><footer id= 'localisation' class='blockquote-footer'>Localisation:<br><cite title='Source Title'></cite></footer></blockquote></(item);
 
     });
 
   });
 };
-function chargerLocalisationCarrosserie(item) {
+function chargerLocalisation(item) {
 
   let cardTitle = document.createElement('h5');
   cardTitle.className = "card";
-  cardTitle.innerText = item["userCarrosserie"];
+  cardTitle.innerText = item["user"];
   document.getElementById("card").appendChild(cardTitle);
-  let localisationUser = document.createElement('p');
-  localisationUser.className = "card";
-  localisationUser.innerText = item["localisationCarrosserie"];
-  document.getElementById("card").appendChild(localisationUser);
-  let descriptionCarrosserie = document.createElement('h6');
-  descriptionCarrosserie.className = "card";
-  descriptionCarrosserie.innerText = item["commentCarrosserie"];
-  document.getElementById("card").appendChild(descriptionCarrosserie);
+  let localisation = document.createElement('p');
+  localisation.className = "card";
+  localisation.innerText = item["localisation"];
+  document.getElementById("card").appendChild(localisation);
+  let comment = document.createElement('h6');
+  comment.className = "card";
+  comment.innerText = item["comment"];
+  document.getElementById("card").appendChild(comment);
 
 };
 function ajoutCarrosserie() {
   document.getElementById("envoi").addEventListener('click', function (e) {
     $.post("http://localhost:8080/services/carrosserie/add", {
-      userCarrosserie: document.getElementById("inputUser").value,
-      localisationCarrosserie: document.getElementById("inputLocalisation").value,
-      commentCarrosserie: document.getElementById("inputComment").value
+      user: document.getElementById("inputUser").value,
+      localisation: document.getElementById("inputLocalisation").value,
+      comment: document.getElementById("inputComment").value
     });
     document.location.reload(true);
   });
@@ -186,7 +185,6 @@ function listeHebergement() {
     url: "http://localhost:8080/services/hebergement/recherche"
   }).then(function (data) {
     listeHebergement = data;
-    chargerMenuHebergement();
   });
 }
 
@@ -194,6 +192,7 @@ rechercheHebergement.addEventListener('click', function () {
   document.getElementById("creation").innerHTML = "";
   document.getElementById("creation2").innerHTML = "<div class='col-sm-12'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
   listeHebergement();
+  chargerMenuHebergement();
 
 });
 
@@ -231,10 +230,10 @@ function chargerLocalisationHebergement(item) {
   nbCouchageHebergement.className = "card";
   nbCouchageHebergement.innerText = item["nbCouchageHebergement"];
   document.getElementById("card").appendChild(nbCouchageHebergement);
-  let localisationUser = document.createElement('p');
-  localisationUser.className = "card";
-  localisationUser.innerText = item["localisationHebergement"];
-  document.getElementById("card").appendChild(localisationUser);
+  let localisation = document.createElement('p');
+  localisation.className = "card";
+  localisation.innerText = item["localisationHebergement"];
+  document.getElementById("card").appendChild(localisation);
   let commentHebergement = document.createElement('h6');
   commentHebergement.className = "card";
   commentHebergement.innerText = item["commentHebergement"];
@@ -257,9 +256,14 @@ function ajoutHebergement() {
 function searchId(){
   document.getElementById("search-button").addEventListener("click",function(e){
 
-      id=document.getElementById("inputsearch").value;
- 
-   success :  (afficherCard),
-   error : (error)})})};
-  
+    id=document.getElementById("inputsearch").value;
+    $.ajax({
+        url:"http://localhost:8080/services/recheche/"+id,
+     success :  (console.log(ok)),
+     error : (error)})})};
+
+     function error (data){
+      //document.location.href="404error.html"
+      console.log("KO");
+   }
 
