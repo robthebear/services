@@ -1,4 +1,4 @@
-
+<div style="background-color:black">
 
 
 # services
@@ -72,3 +72,4 @@ nbCouchage: 3
 </ul>
 <p><strong>Saisie d'écran</strong></p>
 <img src="/screenshot.png">
+</div>
