@@ -1,3 +1,6 @@
+<body style="background-color:black;">
+
+
 # services
 
 <h1>Introduction:</h1>
@@ -69,3 +72,4 @@ nbCouchage: 3
 </ul>
 <p><strong>Saisie d'écran</strong></p>
 <img src="/screenshot.png">
+</body>
