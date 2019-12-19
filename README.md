@@ -1,4 +1,4 @@
-<body style="background-color:red;">
+
 
 
 # services
@@ -72,4 +72,3 @@ nbCouchage: 3
 </ul>
 <p><strong>Saisie d'écran</strong></p>
 <img src="/screenshot.png">
-</body>
