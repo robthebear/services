@@ -65,4 +65,5 @@ nbCouchage: 3
 <li><code>comment</code>--Description de son offre</li>
 <li><code>nbCouchage</code>--La possibilité de couchages</li>
 </ul>
+<p><strong>Saisie d'écran</strong></p>
 <img src="/screenshot.png">
