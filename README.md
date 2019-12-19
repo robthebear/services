@@ -10,6 +10,8 @@ Ma partie consistait à m'occuper de la partie services, qui sont hebergement, m
 Les gens s'inscrivent et proposent leur savoir faire ou un hébergement.<br>
 La page à 3 onglets avec chacun 2 sous-onglets. On peut soit rechercher, ou aussi ajouter une fiche.<br>
 Il est possible de rechercher par id en haut à droite.</p>
+<p><strong>Diagramme</strong></p>
+<img src="Diagramme.jpg">
 
 <h2>EndPoints</h2>
 <ul>
