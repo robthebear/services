@@ -5,16 +5,7 @@ searchId();
 
 document.getElementById("contenant").innerHTML = "<div id='text-ephemere'><h1>Bienvenue sur la page.<br>Veuillez faire votre choix de rubrique.</h1></div>";
 
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
-// add the OpenStreetMap tiles
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-      }).addTo(map);
-
-      // show the scale bar on the lower left corner
-      L.control.scale().addTo(map);
 
 
 
