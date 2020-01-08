@@ -1,9 +1,20 @@
 /**
  * 
  */
-
 searchId();
+
 document.getElementById("contenant").innerHTML = "<div id='text-ephemere'><h1>Bienvenue sur la page.<br>Veuillez faire votre choix de rubrique.</h1></div>";
+
+var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+// add the OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+      }).addTo(map);
+
+      // show the scale bar on the lower left corner
+      L.control.scale().addTo(map);
 
 
 
@@ -27,16 +38,16 @@ rechercheMecanique.className = "dropdown";
 
 rechercheMecanique.addEventListener('click', function () {
   document.getElementById("contenant").innerHTML = "";
- document.getElementById("contenant").innerHTML = "<div class='col-sm-6'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
-                       
-                            
+  document.getElementById("contenant").innerHTML = "<div class='col-sm-6'><div class='dropdown'><button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Localisation</button><div id='dropdown-list' class='dropdown-menu' aria-labelledby='dropdownMenuButton'></div></div></div>";
+
+
   $.ajax({
     url: "http://localhost:8080/services/mecanique/recherche"
   }).then(function (data) {
     listeMecanique = data;
     chargerMenuMecanique();
   });
-  
+
 
 
 });
@@ -70,7 +81,7 @@ var rechercheCarrosserie = document.getElementById("rechercheCarrosserie");
 rechercheCarrosserie.className = "dropdown";
 
 addServiceCarrosserie.addEventListener('click', function () {
- // document.getElementById("contenant").innerHTML = "";
+  // document.getElementById("contenant").innerHTML = "";
   document.getElementById("contenant").innerHTML = "<form><div class='form-group col-sm-6'><label for='inputUser'></label><input type='text' class='form-control' id='inputUser' placeholder='Utilisateur'></div><div class='form-group col-sm-6'><label for='inputLocalisation'></label><input type='text' class='form-control' id='inputLocalisation' placeholder='Localisation'></div><div class='form-group col-sm-8'><label for='inputComment'></label><textarea class='form-control' id='inputComment' rows='3'></textarea></div><button type='button' class='btn btn-primary' id='envoi'>Ajouter</button></form>";
   ajoutCarrosserie();
 });
@@ -86,7 +97,7 @@ rechercheCarrosserie.addEventListener('click', function () {
     listeCarrosserie = data;
     chargerMenuCarrosserie();
   });
-  
+
 });
 
 
@@ -101,8 +112,8 @@ function chargerMenuCarrosserie() {
 
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
-    
-chargerCard(item);
+
+      chargerCard(item);
 
     });
 
@@ -110,7 +121,7 @@ chargerCard(item);
 };
 function chargerCard(item) {
 
-  
+
   document.getElementById("contenant").innerHTML = "<div class='card' id='card'></div>";
   let cardTitle = document.createElement('h3');
   cardTitle.className = "card-title";
@@ -165,7 +176,7 @@ function chargerMenuHebergement() {
 
     newMenuItem.addEventListener('click', function (event) {
       // l'action à effectuer lorsqu'on clique sur un element du dropdown
-      
+
       chargerCard(item);
 
     });
@@ -234,5 +245,6 @@ function error() {
   document.getElementById("contenant").innerHTML = "";
   document.getElementById("contenant").innerHTML = "<div id='404'><a href='index.html' class='btn btn-primary btn-lg active' role='button' aria-pressed='true'>Retour à l'accueil</a><img src='HTML/Images/error-404-1252056_960_720.webp' alt=''></div>";
 
-}
+};
+
 
